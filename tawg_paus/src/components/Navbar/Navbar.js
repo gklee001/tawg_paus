@@ -14,7 +14,7 @@ class Headbar extends React.Component {
                 <Navbar.Brand href="#home">Clickity Game</Navbar.Brand>
                 <Nav className="mr-auto">
                     <div class="score">Score: </div>
-                    <div class="score">Top Score: </div>
+                    <div class="tscore">Top Score: </div>
 
                 </Nav>
             </Navbar >
