@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Headbar from './components/Navbar/Navbar';
 import TarotCard from './components/TarotCard/TarotCard';
 import Secondhead from './components/Header/Header'
 import Tarot from './cards.json'
+import Score from './components/Score/Score'
+
 
 
 
@@ -13,7 +14,7 @@ class App extends Component {
     Tarot,
     score: 0,
     moves: [],
-
+    tScore: 20
 
     //need to look into the object of a state
   };
@@ -23,28 +24,29 @@ class App extends Component {
     let move = this.state.moves;
     for (var i = 0; i < move.length; i++) {
       if (move[i] === id) {
-        console.log("game over")
+        console.log("game over");
+
+        this.setState(prevState => {
+          return { score: 0 }
+        })
+        this.setState(state => {
+          return { moves: [] }
+        })
+        return;
       }
 
     }
 
 
     this.setState(state => {
-      const moves = state.moves.concat(id);
-      console.log(moves)
+      const newArr = state.moves.concat(id);
+      console.log(newArr)
       return {
-        moves
+        moves: newArr
       }
 
     })
 
-    // if (this.state.moves.id === 0) {
-
-    //   this.setState({ moves: this.state.moves.id === 1 });
-    //   console.log("you lose")
-
-
-    // }
 
 
 
@@ -58,6 +60,9 @@ class App extends Component {
     return (
       <div>
         <Headbar />
+        <Score
+          score={this.state.score}
+          tScore={this.state.tScore}></Score>
         <Secondhead />
         {this.state.Tarot.map(Tarot => (
           <TarotCard
