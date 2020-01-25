@@ -14,7 +14,7 @@ class App extends Component {
     Tarot,
     score: 0,
     moves: [],
-    tScore: 20
+    tScore: 0,
 
     //need to look into the object of a state
   };
@@ -52,7 +52,14 @@ class App extends Component {
 
     this.setState(prevState => {
       return { score: prevState.score + 1 }
-    })
+    });
+    if (this.state.score > this.state.tScore) {
+      this.setState(state => {
+        return {
+          tScore: this.state.score
+        }
+      });
+    }
     console.log("this is your score ", this.state.score)
   }
   render() {
